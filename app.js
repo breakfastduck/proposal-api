@@ -5,6 +5,7 @@ const techRouter = require('./src/routers/tech-router');
 const Proposal = require('./src/models/proposal-model');
 const proposalRouter = require('./src/routers/proposal-router');
 const brokerRouter = require('./src/routers/broker-router');
+const noteRouter = require('./src/routers/note-router')
 
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(cors())
 app.use(techRouter);
 app.use(proposalRouter);
 app.use(brokerRouter);
+app.use(noteRouter);
 
 app.get('*', (req, res) => {
     const data = {
