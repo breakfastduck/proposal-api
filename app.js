@@ -19,6 +19,17 @@ app.use(proposalRouter);
 app.use(brokerRouter);
 app.use(noteRouter);
 
+app.get('/customer', (req, res) => {
+
+    const data = {
+        this: 'Works',
+        how: 'Very nice'
+    }
+
+    res.send(data)
+
+})
+
 app.get('*', (req, res) => {
     const data = {
         error: 'Endpoint does not exist',
