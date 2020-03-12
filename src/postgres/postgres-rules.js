@@ -5,26 +5,29 @@ const cn = {
     port: '5432',
     database: 'proposal',
     user: 'postgres',
-    password: 'postgres'
+    password: 'halflife'
 }
 
 const db = pgp(cn);
 
-const dataObject = {
-    firstName: 'Roger',
-    surname: 'Moore',
-    age: 90,
-    postcode: 'FV1 4HB',
-    business: 'Bondino Ltd.'
+const proposalId = '10003'
+
+const selectRules = async (proposalId) => {
+
+    try{
+        const data = await db.any("select * from ruleaudit where proposalid = $1;", String(proposalId))
+        return data
+
+    } catch (e) {
+        return 'help'
+    }
+    
+    
 }
 
-const insertCustomer = async ( { firstName, surname, age, postcode, business } ) => {
 
-    const response = await db.any('INSERT INTO customer VALUES($1, $2, $3, $4, $5)', [firstName, surname, age, postcode, business])
+console.log(selectRules(proposalId))
 
-    console.log(response)
 
-}
-
-module.exports = insertCustomer(dataObject)
+// module.exports
 
