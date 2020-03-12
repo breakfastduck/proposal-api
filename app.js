@@ -7,7 +7,6 @@ const proposalRouter = require('./src/routers/proposal-router');
 const brokerRouter = require('./src/routers/broker-router');
 const noteRouter = require('./src/routers/note-router')
 
-
 const app = express()
 const port = process.env.PORT || 5050
 //const port = ''
