@@ -2,10 +2,10 @@ const express = require('express');
 require('./src/mongoose');
 const cors = require('cors');
 const techRouter = require('./src/routers/tech-router');
-const Proposal = require('./src/models/proposal-model');
 const proposalRouter = require('./src/routers/proposal-router');
 const brokerRouter = require('./src/routers/broker-router');
-const noteRouter = require('./src/routers/note-router')
+const noteRouter = require('./src/routers/note-router');
+const moment = require('moment')
 
 const app = express()
 const port = process.env.PORT || 5050
@@ -18,18 +18,9 @@ app.use(proposalRouter);
 app.use(brokerRouter);
 app.use(noteRouter);
 
-app.get('/customer', (req, res) => {
-
-    const data = {
-        this: 'Works',
-        how: 'Very nice'
-    }
-
-    res.send(data)
-
-})
 
 app.get('*', (req, res) => {
+    console.info(req.originalUrl + ' hit with method ' + req.method + ' @ ' + moment().format())
     const data = {
         error: 'Endpoint does not exist',
         apiDocumentation: 'https://www.google.com/help'
